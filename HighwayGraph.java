@@ -219,8 +219,32 @@ public class HighwayGraph
         s.close();
 
         // print summary of the graph
-        System.out.println(g);
+        // System.out.println(g);
 
 	// ADD CODE HERE TO COMPLETE LAB TASKS
+        Vertex northExt = g.vertices[0], southExt = g.vertices[0], eastExt = g.vertices[0], 
+            westExt = g.vertices[0], longestVLabel = g.vertices[0], shortestVLabel = g.vertices[0];
+
+        for (Vertex v : g.vertices) {
+            if(v.point.lat > northExt.point.lat){
+                northExt = v;
+            } if(v.point.lat < southExt.point.lat) {
+                southExt = v;
+            } if(v.point.lng < eastExt.point.lng) {
+                eastExt = v;
+            } if(v.point.lng > westExt.point.lng) {
+                westExt = v;
+            } if(v.label.length() > longestVLabel.label.length()){
+                longestVLabel = v;
+            } if(v.label.length() < shortestVLabel.label.length()){
+                shortestVLabel = v;
+            } 
+        }
+        System.out.println("Northernmost Vertex: " + northExt.label + " " + northExt.point);
+        System.out.println("Southernmost Vertex: " + southExt.label + " " + southExt.point);
+        System.out.println("Easternmost Vertex: " + eastExt.label + " " + eastExt.point);
+        System.out.println("Westernmost Vertex: " + westExt.label + " " + westExt.point);
+        System.out.println("Shortest Vertex Label: " + shortestVLabel.label + " " + shortestVLabel.point);
+        System.out.println("Longest Vertex Label: " + longestVLabel.label + " " + longestVLabel.point);
     }
 }
