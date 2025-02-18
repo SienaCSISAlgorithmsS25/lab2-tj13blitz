@@ -246,5 +246,23 @@ public class HighwayGraph
         System.out.println("Westernmost Vertex: " + westExt.label + " " + westExt.point);
         System.out.println("Shortest Vertex Label: " + shortestVLabel.label + " " + shortestVLabel.point);
         System.out.println("Longest Vertex Label: " + longestVLabel.label + " " + longestVLabel.point);
+        System.out.println();
+
+        Edge longestEdge = null, shortestEdge = null;
+
+        for (Vertex v : g.vertices) {
+            Edge e = v.head;
+            while (e != null) { 
+                if (longestEdge == null || e.length > longestEdge.length) {
+                    longestEdge = e;
+                }
+                if (shortestEdge == null || e.length < shortestEdge.length) {
+                    shortestEdge = e;
+                }
+                e = e.next;
+            }
+        }
+        System.out.println("Longest Edge: " + longestEdge.label + " with length " + longestEdge.length);
+        System.out.println("Shortest Edge: " + shortestEdge.label + " with length " + shortestEdge.length);
     }
 }
